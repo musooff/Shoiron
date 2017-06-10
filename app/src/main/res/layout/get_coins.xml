@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Тангаҳоро зиёд кунед!"
+        android:id="@+id/textView71"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView71"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="35dp"
+        android:id="@+id/watch_video">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="+15   "
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/textViewfacebook1"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageView_facebook1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Видео тамошо кунед"
+            android:alpha="0.5"
+            android:id="@+id/text_watch"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textViewfacebook1"
+            android:layout_toEndOf="@+id/textViewfacebook1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_facebook1"
+            android:src="@drawable/coins"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f1f1f1"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/watch_video"
+        android:layout_alignStart="@+id/watch_video"
+        android:layout_below="@+id/watch_video"
+        android:layout_alignRight="@+id/watch_video"
+        android:layout_alignEnd="@+id/watch_video"
+        android:id="@+id/view">
+    </View>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/watch_video"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/share">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_whatsapp1"
+            android:layout_centerVertical="true"
+            android:src="@drawable/coins"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="+15   "
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:id="@+id/textViewsсдфсdfs1"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/imageView_whatsapp1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Ба дӯстон тавсия диҳед"
+            android:id="@+id/text_share"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/textViewsсдфсdfs1"
+            android:layout_toRightOf="@+id/textViewsсдфсdfs1"
+            android:layout_toEndOf="@+id/textViewsсдфсdfs1" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

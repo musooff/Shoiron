@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "752049026364",
+    "firebase_url": "https://shoiron-7833a.firebaseio.com",
+    "project_id": "shoiron-7833a",
+    "storage_bucket": "shoiron-7833a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752049026364:android:327913ea74e7526b",
+        "android_client_info": {
+          "package_name": "attor.shoiron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752049026364-5qhuttr76umthtduqidpiophk3ia8ch0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASJktVhNR3WTjCFS5FF2j2h6MvfnE2m0c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
