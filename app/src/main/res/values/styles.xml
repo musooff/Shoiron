@@ -14,4 +14,25 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/leveldarker</item>
+        <item name="colorButtonNormal">@color/level</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+    <style name="MyButton2" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/coindarker</item>
+        <item name="colorButtonNormal">@color/coin</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+    <style name="MyButton3" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/letterdarker</item>
+        <item name="colorButtonNormal">@color/letter</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:background">@drawable/charbutton</item>
+    </style>
+
 </resources>

@@ -3,9 +3,10 @@ package attor.shoiron;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     String[] answers = {"РӮДАКӢ","ФИРДАВСӢ","БЕДИЛ","ҶОМӢ","СИНО","АТТОР","ҲИЛОЛӢ","ГАНҶАВӢ","ХУҶАНДӢ","ЗЕБУНИССО","ВОСИФӢ","САЪДӢ","ХАЙЁМ","ЗОКОНӢ","ДЕҲЛАВӢ","ҲОФИЗ","ТАБРЕЗӢ","ХУСРАВ","ҒАЗЗОЛӢ","ТӮСӢ","АНВАРӢ","ВАТВОТ","НАВОӢ","ГУЛШАНӢ","БАЛХӢ"};
-    ImageView[] chars,dashes,imageViews;
+    ImageView[] dashes,imageViews;
+    CustomMainButton[] chars;
     char[] char_string;
     Button nl,pl;
     final int[] count = {0};
-    TextView textViewLevel,textViewCoin;
+    CustomMainButton textViewLevel,textViewCoin;
     Character[] alphabet_char_array = {'А','Б','В','Г','Ғ','Д','Е','Ё','Ж','З','И','Ӣ','Й','К','Қ','Л','М','Н','О','П','Р','С','Т','У','Ӯ','Ф','Х','Ҳ','Ч','Ҷ','Ш','Ъ','Э','Ю','Я'};
     Integer[] char_alphabet = {
             R.drawable.icon_char_a_40,
@@ -228,12 +230,12 @@ public class MainActivity extends AppCompatActivity {
 
     Integer[] indexes = {0,1,2,3,4,5,6,7,8,9,10,11,12};
     Integer char_empty,dash;
-    ImageView undo,hint_button,ask_friend,coin_button;
+    CustomMainButton undo,hint_button,ask_friend,coin_button;
     int level,coin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
 
         MobileAds.initialize(getApplicationContext(),"ca-app-pub-8967799784519571~8542708042");
         AdView mAdView = (AdView) findViewById(R.id.adView);
@@ -255,23 +257,22 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
 
-        textViewLevel = (TextView)findViewById(R.id.textView_level);
-        textViewLevel.setText((level + 1)+"");
+        textViewLevel = (CustomMainButton) findViewById(R.id.cmb_level);
+        textViewLevel.setText("Зина: "+(level + 1));
 
-        textViewCoin = (TextView)findViewById(R.id.textView_coin);
+        textViewCoin = (CustomMainButton) findViewById(R.id.cmb_coin);
 
 
         alphabet_str = "АБВГҒДЕЁЖЗИӢЙКҚЛМНОПРСТУӮФХҲЧҶШЪЭЮЯ";
 
         char_empty = R.drawable.icon_char_empty;
         dash = R.drawable.dash;
-        chars = new ImageView[13];
+        chars = new CustomMainButton[13];
         dashes = new ImageView[9];
         imageViews = new ImageView[4];
         char_string = new char[13];
 
-        undo = (ImageView)findViewById(R.id.undo);
-        coin_button = (ImageView)findViewById(R.id.button_coins_main);
+        coin_button = (CustomMainButton) findViewById(R.id.cmb_coin);
         coin_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,24 +281,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        chars[0] = (ImageView)findViewById(R.id.char_0);
-        chars[1] = (ImageView)findViewById(R.id.char_1);
-        chars[2] = (ImageView)findViewById(R.id.char_2);
-        chars[3] = (ImageView)findViewById(R.id.char_3);
-        chars[4] = (ImageView)findViewById(R.id.char_4);
-        chars[5] = (ImageView)findViewById(R.id.char_5);
-        chars[6] = (ImageView)findViewById(R.id.char_6);
-        chars[7] = (ImageView)findViewById(R.id.char_7);
-        chars[8] = (ImageView)findViewById(R.id.char_8);
-        chars[9] = (ImageView)findViewById(R.id.char_9);
-        chars[10] = (ImageView)findViewById(R.id.char_10);
-        chars[11] = (ImageView)findViewById(R.id.char_11);
-        chars[12] = (ImageView)findViewById(R.id.char_12);
+        chars[0] = (CustomMainButton) findViewById(R.id.char_0);
+        chars[1] = (CustomMainButton) findViewById(R.id.char_1);
+        chars[2] = (CustomMainButton) findViewById(R.id.char_2);
+        chars[3] = (CustomMainButton) findViewById(R.id.char_3);
+        chars[4] = (CustomMainButton) findViewById(R.id.char_4);
+        chars[5] = (CustomMainButton) findViewById(R.id.char_5);
+        chars[6] = (CustomMainButton) findViewById(R.id.char_6);
+        chars[7] = (CustomMainButton) findViewById(R.id.char_7);
+        chars[8] = (CustomMainButton) findViewById(R.id.char_8);
+        chars[9] = (CustomMainButton) findViewById(R.id.char_9);
+        chars[10] = (CustomMainButton) findViewById(R.id.char_10);
+        chars[11] = (CustomMainButton) findViewById(R.id.char_11);
+        chars[12] = (CustomMainButton) findViewById(R.id.char_12);
 
 
 
 
-        hint_button = (ImageView)findViewById(R.id.hint_button);
+        hint_button = (CustomMainButton) findViewById(R.id.hint_button);
         hint_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -316,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ask_friend = (ImageView)findViewById(R.id.ask_friend_button);
+        ask_friend = (CustomMainButton) findViewById(R.id.ask_friend_button);
         ask_friend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -353,17 +354,30 @@ public class MainActivity extends AppCompatActivity {
 
         level = sharedPreferences.getInt("level",0);
         coin = sharedPreferences.getInt("coin",24)-1;
+
         levelUP(level);
+
         /*Here is our main work
         * We perform letter click operations and display on dashes what person typed.*/
         count[0] = sharedPreferences.getInt("count",0);
+
+        for (int j = 0; j < 13; j++){
+
+            chars[j].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+
         for (int j = 0; j < 13; j++){
             final int temp = j;
             chars[j].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (char_string[temp]!=' '){
-                        chars[temp].setImageResource(char_empty);
+                        chars[temp].setVisibility(View.INVISIBLE);
                         for (int q = count[0]; q<attempt.length();q++){
                             if (attempt.charAt(q)!=' '){
                                 count[0]++;
@@ -378,11 +392,15 @@ public class MainActivity extends AppCompatActivity {
                         onPause();
                         mediaPlayer = MediaPlayer.create(MainActivity.this,char_click_sound[count[0]]);
                         mediaPlayer.start();
-                        
+
                         count[0]++;
 
                         char_string[temp] = ' ';
+                        Log.e("charstr",char_string.toString());
+                        Log.e("charstr",attempt.toString());
+
                         testIfFinished();
+
                     }
 
 
@@ -401,7 +419,8 @@ public class MainActivity extends AppCompatActivity {
                             if (char_string[m]==' '){
                                 dashes[temp_l].setImageResource(dash);
                                 char_string[m] = attempt.charAt(temp_l);
-                                chars[m].setImageResource(char_alphabet[alphabet_str.indexOf(attempt.charAt(temp_l))]);
+                                chars[m].setVisibility(View.VISIBLE);
+                                chars[m].setText(char_string[m]+"");
                                 attempt = changeCharInPosition(temp_l,' ',attempt);
                                 for (int w = 0;w<attempt.length();w++){
                                     if (attempt.charAt(w)==' '){
@@ -427,6 +446,15 @@ public class MainActivity extends AppCompatActivity {
         return new String(charArray);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null){
+            mediaPlayer.release();
+        }
+    }
+
     public void levelUP(int nextLevel){
 
         if (nextLevel==25){
@@ -435,11 +463,13 @@ public class MainActivity extends AppCompatActivity {
             nextLevel = 0;
         }
 
+        char_string = new char[13];
         result = answers[nextLevel];
+        Log.e("result",result);
         attempt = "         ";
-        textViewLevel.setText((level + 1) + "");
+        textViewLevel.setText("Зина: "+(level + 1));
         coin+=1;
-        textViewCoin.setText(coin + "");
+        textViewCoin.setText("Танга: "+coin + " +");
 
         editor.putInt("level", nextLevel);
         editor.putInt("coin", coin);
@@ -455,16 +485,19 @@ public class MainActivity extends AppCompatActivity {
         for (int k = 0; k<13; k++){
             char_string[k] = alphabet_char_array[k];
             indexes_str+=alphabet_char_array[k];
-            chars[k].setImageResource(char_alphabet[alphabet_str.indexOf(alphabet_char_array[k])]);
+            chars[k].setText(char_string[k]+"");
+            chars[k].setVisibility(View.VISIBLE);
         }
 
         Collections.shuffle(Arrays.asList(indexes));
         for (int i = 0; i<result.length(); i++){
             indexes_str += " "+indexes[i];
-            chars[indexes[i]].setImageResource(char_alphabet[alphabet_str.indexOf(result.charAt(i))]);
+            chars[indexes[i]].setText(result.charAt(i)+"");
             char_string[indexes[i]] = result.charAt(i);
         }
 
+        Log.e("charstr",Arrays.asList(char_string).toString());
+        Log.e("charstr",Arrays.asList(indexes_str).toString());
 
         for (int z = 0; z<9;z++){
             if (z>=result.length())
@@ -472,141 +505,9 @@ public class MainActivity extends AppCompatActivity {
             else
                 dashes[z].setImageResource(dash);
         }
-    }
-    public void updateChars() {
-
-        Collections.shuffle(Arrays.asList(alphabet_char_array));
-
-        attempt = "         ";
-        for (int k = 0; k<13; k++){
-            char_string[k] = alphabet_char_array[k];
-            indexes_str+=alphabet_char_array[k];
-            chars[k].setImageResource(char_alphabet[alphabet_str.indexOf(alphabet_char_array[k])]);
-        }
-
-        Collections.shuffle(Arrays.asList(indexes));
-        for (int i = 0; i<result.length(); i++){
-            indexes_str += " "+indexes[i];
-            chars[indexes[i]].setImageResource(char_alphabet[alphabet_str.indexOf(result.charAt(i))]);
-            char_string[indexes[i]] = result.charAt(i);
-        }
-
-
-        for (int z = 0; z<9;z++){
-            if (z>=result.length())
-                dashes[z].setImageDrawable(null);
-            else
-                dashes[z].setImageResource(dash);
-        }
+        enableClicking();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mediaPlayer != null){
-            mediaPlayer.release();
-        }
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (sharedPreferences.getBoolean("expose",false)){
-            editor.putBoolean("expose", false);
-            editor.apply();
-
-            coin-=15;
-
-            editor.putInt("coin", coin);
-            editor.apply();
-            textViewCoin.setText(coin+"");
-
-
-            Random random = new Random();
-            int temp = random.nextInt(result.length());
-            while (attempt.charAt(temp)!=' '){
-                temp = random.nextInt(result.length());
-            }
-
-            for (int u = 0;u<13;u++){
-                if (char_string[u]==result.charAt(temp)){
-                    attempt = changeCharInPosition(temp,result.charAt(temp),attempt);
-                    dashes[temp].setImageResource(dash_alphabet[alphabet_str.indexOf(result.charAt(temp))]);
-
-                    char_string[u] = ' ';
-                    chars[u].setImageResource(char_empty);
-                    break;
-                }
-            }
-            testIfFinished();
-        }
-        else if (sharedPreferences.getBoolean("remove",false)){
-            editor.putBoolean("remove", false);
-            editor.apply();
-
-            coin-=15;
-
-            editor.putInt("coin", coin);
-            editor.apply();
-            textViewCoin.setText(coin + "");
-
-            for (int ww = 0; ww<13;ww++){
-                if (char_string[ww]!=' ' && result.indexOf(char_string[ww])==-1){
-                    char_string[ww] = ' ';
-                    chars[ww].setImageResource(char_empty);
-                    break;
-                }
-            }
-        }
-        else if (sharedPreferences.getBoolean("solve",false)){
-            editor.putBoolean("solve", false);
-            editor.apply();
-            attempt = result;
-
-
-            coin-=30;
-
-            editor.putInt("coin", coin);
-            editor.apply();
-            textViewCoin.setText(coin+"");
-
-            for (int ee = 0; ee<result.length();ee++){
-                dashes[ee].setImageResource(dash_alphabet[alphabet_str.indexOf(result.charAt(ee))]);
-            }
-            testIfFinished();
-        }
-        else if (sharedPreferences.getBoolean("watched",false)){
-            editor.putBoolean("watched", false);
-
-            coin+=15;
-            editor.putInt("coin", coin);
-            editor.apply();
-            textViewCoin.setText(coin + "");
-        }
-        else if (sharedPreferences.getBoolean("shared",false)){
-            editor.putBoolean("shared", false);
-
-            coin+=15;
-            editor.putInt("coin", coin);
-            editor.apply();
-            textViewCoin.setText(coin+"");
-        }
-        else if (sharedPreferences.getBoolean("won",false)){
-            editor.putBoolean("won",false);
-            editor.apply();
-            level++;
-            levelUP(level);
-        }
-        else if (sharedPreferences.getBoolean("double_reward",false)){
-            editor.putBoolean("double_reward",false);
-            coin++;
-            editor.putInt("coin",coin);
-            editor.apply();
-            level++;
-            levelUP(level);
-        }
-    }
 
     public void testIfFinished(){
         boolean hasnotemptyspot = false;
@@ -622,6 +523,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (hasnotemptyspot){//levelUp
 
+            diableClicking();
             if (result.equals(attempt.substring(0,result.length()))){
                 count[0] = 0;
                 Intent win = new Intent(MainActivity.this,Win.class);
@@ -632,7 +534,8 @@ public class MainActivity extends AppCompatActivity {
             else{
 
                 for (int io =0; io <13;io++){
-                    chars[io].setImageResource(char_empty);
+                    chars[io].setText("");
+                    chars[io].setVisibility(View.VISIBLE);
                     char_string[io] = ' ';
                 }
                 Toast.makeText(MainActivity.this,"Мутаассифона иштибоҳ кардед!",Toast.LENGTH_SHORT).show();
@@ -647,6 +550,152 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, 3000);
             }
+        }
+    }
+
+    public void updateChars() {
+
+        Collections.shuffle(Arrays.asList(alphabet_char_array));
+
+        attempt = "         ";
+        for (int k = 0; k<13; k++){
+            char_string[k] = alphabet_char_array[k];
+            indexes_str+=alphabet_char_array[k];
+            chars[k].setText(char_string[k]+"");
+        }
+
+        Collections.shuffle(Arrays.asList(indexes));
+        for (int i = 0; i<result.length(); i++){
+            indexes_str += " "+indexes[i];
+            chars[indexes[i]].setText(result.charAt(i)+"");
+            char_string[indexes[i]] = result.charAt(i);
+        }
+
+
+        for (int z = 0; z<9;z++){
+            if (z>=result.length())
+                dashes[z].setImageDrawable(null);
+            else
+                dashes[z].setImageResource(dash);
+        }
+        enableClicking();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sharedPreferences.getBoolean("expose",false)){
+            editor.putBoolean("expose", false);
+            editor.apply();
+
+            coin-=15;
+
+            editor.putInt("coin", coin);
+            editor.apply();
+            textViewCoin.setText("Танга: "+coin + " +");
+
+
+            Random random = new Random();
+            int temp = random.nextInt(result.length());
+            while (attempt.charAt(temp)!=' '){
+                temp = random.nextInt(result.length());
+            }
+
+            for (int u = 0;u<13;u++){
+                if (char_string[u]==result.charAt(temp)){
+                    attempt = changeCharInPosition(temp,result.charAt(temp),attempt);
+                    dashes[temp].setImageResource(dash_alphabet[alphabet_str.indexOf(result.charAt(temp))]);
+
+                    char_string[u] = ' ';
+                    chars[u].setVisibility(View.INVISIBLE);
+                    break;
+                }
+            }
+            testIfFinished();
+        }
+        else if (sharedPreferences.getBoolean("remove",false)){
+            editor.putBoolean("remove", false);
+            editor.apply();
+
+            coin-=10;
+
+            editor.putInt("coin", coin);
+            editor.apply();
+            textViewCoin.setText("Танга: "+coin + " +");
+
+            for (int ww = 0; ww<13;ww++){
+                if (char_string[ww]!=' ' && result.indexOf(char_string[ww])==-1){
+                    char_string[ww] = ' ';
+                    chars[ww].setVisibility(View.INVISIBLE);
+                    break;
+                }
+            }
+        }
+        else if (sharedPreferences.getBoolean("solve",false)){
+            editor.putBoolean("solve", false);
+            editor.apply();
+            attempt = result;
+
+
+            coin-=30;
+
+            editor.putInt("coin", coin);
+            editor.apply();
+            textViewCoin.setText("Танга: "+coin + " +");
+
+            for (int ee = 0; ee<result.length();ee++){
+                dashes[ee].setImageResource(dash_alphabet[alphabet_str.indexOf(result.charAt(ee))]);
+            }
+            testIfFinished();
+        }
+        else if (sharedPreferences.getBoolean("watched",false)){
+            editor.putBoolean("watched", false);
+
+            coin+=15;
+            editor.putInt("coin", coin);
+            editor.apply();
+            Toast.makeText(getApplicationContext(),"Барои Шумо 15 танга дода шуд. Муборак шавад!",Toast.LENGTH_SHORT).show();
+
+            textViewCoin.setText("Танга: "+coin + " +");
+        }
+        else if (sharedPreferences.getBoolean("shared",false)){
+            editor.putBoolean("shared", false);
+
+            coin+=15;
+            editor.putInt("coin", coin);
+            editor.apply();
+            Toast.makeText(getApplicationContext(),"Барои Шумо 15 танга дода шуд. Муборак шавад!",Toast.LENGTH_SHORT).show();
+
+            textViewCoin.setText("Танга: "+coin + " +");
+        }
+        else if (sharedPreferences.getBoolean("won",false)){
+            editor.putBoolean("won",false);
+            editor.apply();
+            level++;
+
+            levelUP(level);
+        }
+        else if (sharedPreferences.getBoolean("double_reward",false)){
+            editor.putBoolean("double_reward",false);
+            coin++;
+            editor.putInt("coin",coin);
+            editor.apply();
+            level++;
+            levelUP(level);
+            Toast.makeText(getApplicationContext(),"Барои Шумо 2 танга дода шуд. Муборак шавад!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void diableClicking(){
+        /*Idea of erasing per  index*/
+        for (int l = 0;l<9;l++){
+            dashes[l].setClickable(false);
+        }
+    }
+    public void enableClicking(){
+        /*Idea of erasing per  index*/
+        for (int l = 0;l<9;l++){
+            dashes[l].setClickable(true);
         }
     }
 }
