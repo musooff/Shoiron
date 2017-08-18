@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/background"
-    tools:context="attor.shoiron.GameActivity">
+    android:background="@color/background">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
